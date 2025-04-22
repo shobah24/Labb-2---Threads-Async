@@ -9,12 +9,11 @@
         public double Speed { get; set; } = 120.0; // km/h
         public bool Finished { get; set; } = false;
 
-        // Skapar instansen av Random för att generera random händelser
         private static readonly Random _random = new Random();
 
         // skapas till för att hålla koll på om någon har vunnit racet
         private static bool _winner = false;
-        private static object _lock = new object(); // för att synkronisera tillgången till vinnaren så det bara är en vinnare
+        private static object _lock = new object(); 
 
         public Car(string name)
         {
@@ -28,7 +27,7 @@
 
             while (Distance < MaxDistance)
             {
-                Distance += Speed / 3600.0; // Konvertera hastighet från km/h till km/s 0,0333km/s... 
+                Distance += Speed / 36000.0; // Konvertera hastighet från km/h till km/s 0,0333km/s... 
 
                 // Kolla om det har gått 10 sekunder
                 if ((DateTime.Now - time).TotalSeconds >= 10)
@@ -36,7 +35,7 @@
                     RandomEventHandler();
                     time = DateTime.Now; 
                 }
-                Thread.Sleep(500); // vänta 1 sekund innan nästa händelse kan ske
+                Thread.Sleep(100); // vänta 0,5 sekund innan nästa händelse kan ske
             }
 
             lock (_lock) // låser så att bara en bil kan komma åt koden 
@@ -80,7 +79,7 @@
             {
                 //Speed -= 1; // hastighet - 1
                 Speed = Math.Max(1, Speed - 1);
-                Console.WriteLine($"{Name} har fått motorfel, hastigheten sänks till {Speed} Km/h");
+                Console.WriteLine($"{Name} har fått motorfel, hastigheten sänks till {Speed} Km/h!");
             }
         }
         // status på bilarna

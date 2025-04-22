@@ -2,8 +2,6 @@
 {
     public class ManageRace
     {
-        // i den här klassen hanterar vi allt i själva tävlingen
-
         // metod som hanterar sälva racet och startar den
         public void StartRace()
         {
@@ -52,7 +50,7 @@
                     }
                 }
             });
-            statusThread.IsBackground = true; // Gör status-tråden till en bakgrundstråd så att den inte blockerar programmet
+            statusThread.IsBackground = true; // Gör status-tråden till en bakgrundstråd så att den inte blockerar programmet när vi kör
             statusThread.Start();
 
             // Vänta på att alla trådar ska avslutas
